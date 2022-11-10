@@ -1,0 +1,200 @@
+* {
+    padding: 0;
+    margin: 0 5px;
+}
+
+* {box-sizing: border-box;}
+form {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.forms {
+  width: auto;
+  float: right;
+  margin-right: 30px;
+}
+.forms input {
+  width: 250px;
+  height: 42px;
+  padding-left: 15px;
+  border-radius: 42px;
+  border: 2px solid #b5b6b6;
+  background: #e1e1e1;
+  outline: none;
+  position: relative;
+  transition: .3s linear;
+}
+.forms input:focus {
+  width: 300px;
+}
+.forms button {
+  width: 42px;
+  height: 42px;
+  background: none;
+  border: none;
+  position: absolute;
+  top: -2px;
+  right: 0;
+}
+.forms button:before{
+  content: "\f002";
+  font-family: FontAwesome;
+  color: #000000;
+}
+
+/* W3C standard
+   сейчас только для Firefox */
+   * {
+    scrollbar-width: thin;
+    scrollbar-color: #3a76aa00 #7baad000;
+  }
+  
+  /* для Chrome/Edge/Safari */
+  *::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #7baad000;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #3a76aa00;
+    border-radius: 5px;
+    border: 3px solid #7baad000;
+  }
+  
+.header {
+    align-content: center;
+    padding: 10px 0 10px 0;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.header .container{
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+li {
+    margin-right: 10%;
+    white-space: nowrap;
+    font-size: 20px;
+    color: #030305;
+    text-decoration: none;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.main {
+    margin-top: 10px;
+    background-image: url("../images/promo-kino.jpg");
+    background-position: center;
+    background-size: cover;
+    padding: 104px 0 60px 0;
+
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    
+}
+
+.main img{
+    height: 500px;
+    width: 80%;
+
+}
+
+.kino {
+    margin-top: 1%;
+}
+
+.container-menu{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 10px 0 10px 0;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.container .rows {
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);
+    padding: 1% 5% 2% 5%;
+
+}
+
+.rows {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.row {
+    padding: 1%;
+    max-width: 20%;
+    text-align: center;
+    margin-top: 40px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.row img{
+    vertical-align: bottom;
+    height: 90%;
+    width: 90%;
+}
+
+.row h1{
+    font-size: 24px;
+    line-height: 150%;
+    letter-spacing: 0.02em;
+    color: #030305;
+    padding: 15px 0 17px 0;
+}
+
+.news {
+    display: flex;
+    margin-bottom: 1%;
+}
+
+.news .container .rows {
+    display: flex;
+    align-items: center;
+
+}
+
+.news .row {
+    padding-left: 10px;
+    max-width: 30%;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.news .row img{
+    vertical-align: center;
+    height: 90%;
+    width: 90%;
+}
+
+.footer {
+    border-top: 3px solid #E5E5E5;
+    padding: 25px 0;
+    
+}
+
