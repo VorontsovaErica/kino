@@ -29,7 +29,7 @@ if (check_auth()) {
         </nav>
         <?php if ($user) { ?>
            <div class="d-form"> 
-            <div><p>Приветствую, <?=htmlspecialchars($user['username'])?>!</p> </div>
+            <div><p>Приветствую, <a href="admin_panel/admin.php"> <?=htmlspecialchars($user['username'])?> </a>!</p> </div>
             <form class="forms-c" method="post" action="/admin_panel/do_logout.php">
                 <button type="submit" class="c-button">Выход</button>
             </form>
