@@ -21,7 +21,7 @@ if (check_auth()) {
         <div class="container">
         <nav class="menu">
             <ul>
-               <a href="kino.php"><li>Фильмы</li> </a>
+            <a href="kino.php"><li>Фильмы</li> </a>
                <a href="sessions.php"><li>Сеансы</li></a>
                <a href="news.php"><li>Новости</li></a>
                <a href="#"><li>Отчет</li></a>
@@ -38,4 +38,35 @@ if (check_auth()) {
     </div>
     </header>
 
-    
+    <section class="kino">
+        <div class="container" style="display: block;">
+        <h1>Управление фильмами</h1>
+        
+       <?php $stmt = pdo()->prepare("SELECT * FROM `films` JOIN jenre ON films.id_jenre = jenre.id");
+        $stmt->execute();
+        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+
+        <table class="table">
+        <thead>
+        <tr>
+        <th scope="col">Название </th>
+       <th scope="col">Длительность </th>
+       <th scope="col">Жанр </th>
+       <th scope="col">Описание </th>
+        </tr>
+        </thead>
+        <tbody>
+            <?php  foreach ($array as $row): ?>
+                <tr>
+                    <td><?= $row['name'] ?></td>
+                    <td><?= $row['duration'] ?></td>
+                    <td><?= $row['name_j'] ?></td>
+                    <td><?= $row['description'] ?></td>
+                </tr>
+                <?php endforeach; ?>
+        </tbody>
+
+        </table>
+            </div>
+    </section>
