@@ -38,18 +38,19 @@ if (check_auth()) {
     </div>
     </header>
 
-    <section>
+    <section class="kino">
+        <div class="container">
         <h1>Управление фильмами</h1>
+
        <?php $stmt = pdo()->prepare("SELECT * FROM `films` JOIN jenre ON films.id_jenre = jenre.id");
         $stmt->execute();
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
-
+        
         <table class="table">
         <thead>
         <tr>
-       <th scope="col">№ </th>
-       <th scope="col">Название </th>
+        <th scope="col">Название </th>
        <th scope="col">Длительность </th>
        <th scope="col">Жанр </th>
        <th scope="col">Описание </th>
@@ -58,7 +59,6 @@ if (check_auth()) {
         <tbody>
             <?php  foreach ($array as $row): ?>
                 <tr>
-                    <td><?= $row['id'] ?></td>
                     <td><?= $row['name'] ?></td>
                     <td><?= $row['duration'] ?></td>
                     <td><?= $row['name_j'] ?></td>
@@ -68,4 +68,5 @@ if (check_auth()) {
         </tbody>
 
         </table>
+            </div>
     </section>
