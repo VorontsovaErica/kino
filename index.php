@@ -45,6 +45,11 @@ if (check_auth()) {
         </div>
     </section>
 
+    <?php $stmt = pdo()->prepare("SELECT * FROM `films` JOIN jenre ON films.id_jenre = jenre.id");
+        $stmt->execute();
+        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+
     <!--Секция с фильмами-->
     <section class="kino">
         <div class="container-menu">
@@ -62,46 +67,28 @@ if (check_auth()) {
         </div>
         <div class="container">
             <div class="rows">
+            <?php  foreach ($array as $row): ?>
                 <div class="row">
                     <img src="images/kino1.jpg" alt="">
-                    <h5>Name</h5>
+                    <h5><?= $row['name'] ?></h5>
                 </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                    <h5>Name</h5>
-                </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                    <h5>Name</h5>
-                </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                    <h5>Name</h5>
-                </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                    <h5>Name</h5>
-                </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                    <h5>Name</h5>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
-
+    <?php $stmt = pdo()->prepare("SELECT * FROM `News`");
+        $stmt->execute();
+        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
     <section class="news">
         <div class="container">
             <div class="rows">
+            <?php  foreach ($array as $row): ?>
                 <div class="row">
-                    <img src="images/kino1.jpg" alt="">
+                    <p> <?= $row['header'] ?> </p>
+                    <!--<img src="images/kino1.jpg" alt=""> -->
                 </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>

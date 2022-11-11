@@ -247,3 +247,8 @@ th {
     color: #669;
     padding: 12px 2px;
   }
+
+  .table{
+    margin-top: 3%;
+    border: 1px solid #69c;
+  }

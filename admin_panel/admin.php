@@ -39,14 +39,14 @@ if (check_auth()) {
     </header>
 
     <section class="kino">
-        <div class="container">
+        <div class="container" style="display: block;">
         <h1>Управление фильмами</h1>
 
        <?php $stmt = pdo()->prepare("SELECT * FROM `films` JOIN jenre ON films.id_jenre = jenre.id");
         $stmt->execute();
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
-        
+
         <table class="table">
         <thead>
         <tr>
