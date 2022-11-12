@@ -9,7 +9,7 @@ require_once __DIR__.'/boot.php';
 
 </body>
 <head>
-    <body>
+    <body style="margin-top: 2%;">
         <div class="container" style="display: block; text-align: center;">
         <?php
 // если запрос GET
@@ -31,8 +31,10 @@ if($_SERVER["REQUEST_METHOD"] === "GET" AND isset($_GET["id_f"]))
         }?>
 
 <h3>Изменение данных о фильме</h3>
+<hr>
+
   <div class="rows">
-  <form method='POST' class="forms" style="margin: auto;">
+  <form method='POST' class="forms" style="margin: auto; margin-top: 3%;">
 
      <div class="form-control" >
 

@@ -55,7 +55,7 @@ if (check_auth()) {
        <th scope="col">Дата и время публикации </th>
        <th scope="col">Текст </th>
        <th scope="col">Удалить </th>
-
+       <th scope="col">Удалить </th>
         </tr>
         </thead>
         <tbody>
@@ -64,8 +64,8 @@ if (check_auth()) {
                     <td><?= $row['header'] ?></td>
                     <td><?= $row['datetime'] ?></td>
                     <td><?= $row['text'] ?></td>
-                    <td><button onclick="del(<?= $row['id_n'] ?>)" type="button" class="btn btn-danger btn-sm"> Х </button></td>
-
+                    <td><button onclick="del(<?= $row['id_n'] ?>)" type="button" class="c-button"> Х </button></td>
+                    <td><a href="updateNews.php?id_n=<?= $row["id_n"] ?>"> <button type="button" class="c-button"> V </button></a> </td>
                 </tr>
                 <?php endforeach; ?>
         </tbody>
