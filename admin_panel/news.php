@@ -41,7 +41,7 @@ if (check_auth()) {
 
     <section class="kino">
         <div class="container" style="display: block;">
-        <h1>Управление фильмами</h1>
+        <h1>Управление новостями</h1>
         
        <?php $stmt = pdo()->prepare("SELECT * FROM `News`");
         $stmt->execute();

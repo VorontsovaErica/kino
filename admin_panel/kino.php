@@ -66,9 +66,9 @@ if (check_auth()) {
                     <td><?= $row['duration'] ?></td>
                     <td><?= $row['name_j'] ?></td>
                     <td><?= $row['description'] ?></td>
-                    <td><button onclick="del(<?= $row['id_f'] ?>)" type="button" class="btn btn-danger btn-sm"> Х </button></td>
+                    <td><button onclick="del(<?= $row['id_f'] ?>)" type="button" class="c-button"> Х </button></td>
                         <td>
-                            <a href="update.php?id=<?= $row["id_f"] ?>"> <button type="button" class="btn btn-primary btn-sm"> V </button></a> </td>
+                            <a href="update.php?id_f=<?= $row["id_f"] ?>"> <button type="button" class="c-button"> V </button></a> </td>
                 </tr>
                 <?php endforeach; ?>
         </tbody>

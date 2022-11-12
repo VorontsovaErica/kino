@@ -40,6 +40,7 @@ form {
 .forms input {
   width: 250px;
   height: 42px;
+  margin-top: 2%;
   padding-left: 15px;
   border-radius: 42px;
   border: 2px solid #b5b6b6;
@@ -220,9 +221,9 @@ li {
 }
 
 .c-button {
-    background-color: #eff0f0; /* Green */
+    background-color: white; /* Green */
     border: none;
-    color: black;
+    color: #039;
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
@@ -252,3 +253,16 @@ th {
     margin-top: 3%;
     border: 1px solid #69c;
   }
+
+  textarea {
+    width: 500px;
+    min-height: 50px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    padding: 5px;
+    box-sizing: border-box;
+  border: 2px solid #b5b6b6;
+  border-radius: 10px;
+  background-color: #e1e1e1;
+
+}
