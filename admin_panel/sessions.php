@@ -66,7 +66,7 @@ if (check_auth()) {
                     <td><?= $row['time'] ?></td>
                     <td><?= $row['name'] ?></td>
                     <td><?= $row['name_h'] ?></td>
-                    <td><button onclick="del(<?= $row['id_s'] ?>)" type="button" class="btn btn-danger btn-sm"> Х </button></td>
+                    <td><button onclick="del(<?= $row['id_s'] ?>)" type="button" class="c-button"> Х </button></td>
 
                 </tr>
                 <?php endforeach; ?>

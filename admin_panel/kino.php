@@ -41,8 +41,10 @@ if (check_auth()) {
 
     <section class="kino">
         <div class="container" style="display: block;">
+        <div style="display: flex;">
         <h1>Управление фильмами</h1>
-        
+        <a href="createFilms.php"><button type="button" class="c-button"> Добавить фильм </button> </a>
+        </div>
        <?php $stmt = pdo()->prepare("SELECT * FROM `films` JOIN jenre ON films.id_jenre = jenre.id_j");
         $stmt->execute();
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
