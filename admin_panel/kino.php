@@ -14,6 +14,7 @@ if (check_auth()) {
 <html lang="ru">
 <body>
    <link rel="stylesheet" href="../styles/style.css"> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </body>
 <head>
@@ -42,7 +43,7 @@ if (check_auth()) {
         <div class="container" style="display: block;">
         <h1>Управление фильмами</h1>
         
-       <?php $stmt = pdo()->prepare("SELECT * FROM `films` JOIN jenre ON films.id_jenre = jenre.id");
+       <?php $stmt = pdo()->prepare("SELECT * FROM `films` JOIN jenre ON films.id_jenre = jenre.id_j");
         $stmt->execute();
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
@@ -54,6 +55,8 @@ if (check_auth()) {
        <th scope="col">Длительность </th>
        <th scope="col">Жанр </th>
        <th scope="col">Описание </th>
+       <th scope="col">Изменить </th>
+       <th scope="col">Удалить </th>
         </tr>
         </thead>
         <tbody>
@@ -63,6 +66,9 @@ if (check_auth()) {
                     <td><?= $row['duration'] ?></td>
                     <td><?= $row['name_j'] ?></td>
                     <td><?= $row['description'] ?></td>
+                    <td><button onclick="del(<?= $row['id_f'] ?>)" type="button" class="btn btn-danger btn-sm"> Х </button></td>
+                        <td>
+                            <a href="update.php?id=<?= $row["id_f"] ?>"> <button type="button" class="btn btn-primary btn-sm"> V </button></a> </td>
                 </tr>
                 <?php endforeach; ?>
         </tbody>
@@ -70,3 +76,20 @@ if (check_auth()) {
         </table>
             </div>
     </section>
+
+    <script>
+   
+function del(id_f)
+    {
+        $.ajax({
+            url: 'controller/DeleteFilm.php',         /* Куда пойдет запрос */
+            method: 'get',             /* Метод передачи (post или get) */
+            dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
+            data: {id_f: id_f},     /* Параметры передаваемые в запросе. */
+            success: function(){   /* функция которая будет выполнена после успешного запроса.  */
+                location.reload();
+            }
+        });
+    }
+
+</script>

@@ -14,6 +14,7 @@ if (check_auth()) {
 <html lang="ru">
 <body>
    <link rel="stylesheet" href="../styles/style.css"> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </body>
 <head>
@@ -42,7 +43,7 @@ if (check_auth()) {
         <div class="container" style="display: block;">
         <h1>Управление фильмами</h1>
         
-       <?php $stmt = pdo()->prepare("SELECT * FROM `sessions` JOIN films ON sessions.id_films = films.id JOIN halls ON sessions.id_halls = halls.id");
+       <?php $stmt = pdo()->prepare("SELECT * FROM `sessions` JOIN films ON sessions.id_films = films.id_f JOIN halls ON sessions.id_halls = halls.id_h");
         $stmt->execute();
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
@@ -54,6 +55,8 @@ if (check_auth()) {
        <th scope="col">Время </th>
        <th scope="col">Фильм </th>
        <th scope="col">Зал </th>
+       <th scope="col">Удалить </th>
+
         </tr>
         </thead>
         <tbody>
@@ -63,6 +66,8 @@ if (check_auth()) {
                     <td><?= $row['time'] ?></td>
                     <td><?= $row['name'] ?></td>
                     <td><?= $row['name_h'] ?></td>
+                    <td><button onclick="del(<?= $row['id_s'] ?>)" type="button" class="btn btn-danger btn-sm"> Х </button></td>
+
                 </tr>
                 <?php endforeach; ?>
         </tbody>
@@ -70,3 +75,20 @@ if (check_auth()) {
         </table>
             </div>
     </section>
+
+    <script>
+   
+function del(id_s)
+    {
+        $.ajax({
+            url: 'controller/DeleteSessions.php',         /* Куда пойдет запрос */
+            method: 'get',             /* Метод передачи (post или get) */
+            dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
+            data: {id_s: id_s},     /* Параметры передаваемые в запросе. */
+            success: function(){   /* функция которая будет выполнена после успешного запроса.  */
+                location.reload();
+            }
+        });
+    }
+
+</script>

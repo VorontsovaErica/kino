@@ -14,6 +14,7 @@ if (check_auth()) {
 <html lang="ru">
 <body>
    <link rel="stylesheet" href="../styles/style.css"> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </body>
 <head>
@@ -53,6 +54,8 @@ if (check_auth()) {
         <th scope="col">Заголовок </th>
        <th scope="col">Дата и время публикации </th>
        <th scope="col">Текст </th>
+       <th scope="col">Удалить </th>
+
         </tr>
         </thead>
         <tbody>
@@ -61,6 +64,8 @@ if (check_auth()) {
                     <td><?= $row['header'] ?></td>
                     <td><?= $row['datetime'] ?></td>
                     <td><?= $row['text'] ?></td>
+                    <td><button onclick="del(<?= $row['id_n'] ?>)" type="button" class="btn btn-danger btn-sm"> Х </button></td>
+
                 </tr>
                 <?php endforeach; ?>
         </tbody>
@@ -68,3 +73,20 @@ if (check_auth()) {
         </table>
             </div>
     </section>
+
+    <script>
+   
+function del(id_n)
+    {
+        $.ajax({
+            url: 'controller/DeleteNews.php',         /* Куда пойдет запрос */
+            method: 'get',             /* Метод передачи (post или get) */
+            dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
+            data: {id_n: id_n},     /* Параметры передаваемые в запросе. */
+            success: function(){   /* функция которая будет выполнена после успешного запроса.  */
+                location.reload();
+            }
+        });
+    }
+
+</script>

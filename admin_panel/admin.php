@@ -38,4 +38,8 @@ if (check_auth()) {
     </div>
     </header>
 
-    
+    <section>
+        <div class="container">
+            <h3> Здесь нужно добавить добавление сотрудников и вывод их </h3>
+        </div>
+    </section>
