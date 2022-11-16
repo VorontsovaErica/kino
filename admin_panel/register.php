@@ -16,8 +16,8 @@ if (check_auth()) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Php auth demo</title>
-  <link rel="stylesheet" href="css/bootstrap.css">
+  <title>Админка</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <body>
 
@@ -27,30 +27,29 @@ if (check_auth()) {
 
         <?php if ($user) { ?>
 
-          <h1>Welcome back, <?=htmlspecialchars($user['username'])?>!</h1>
+          <h1>Приветствую, <?=htmlspecialchars($user['username'])?>!</h1>
 
           <form class="mt-5" method="post" action="do_logout.php">
-            <button type="submit" class="btn btn-primary">Logout</button>
+            <button type="submit" class="btn btn-primary">Выйти</button>
           </form>
 
         <?php } else { ?>
 
-          <h1 class="mb-5">Registration</h1>
+          <h1 class="mb-5">Регистрация сотрудника</h1>
 
             <?php flash(); ?>
 
           <form method="post" action="do_register.php">
             <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
+              <label for="username" class="form-label">Логин</label>
               <input type="text" class="form-control" id="username" name="username" required>
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
+              <label for="password" class="form-label">Пароль</label>
               <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="d-flex justify-content-between">
-              <button type="submit" class="btn btn-primary">Register</button>
-              <a class="btn btn-outline-primary" href="index.php">Login</a>
+              <button type="submit" class="btn btn-primary">Регистрация</button>
             </div>
           </form>
 

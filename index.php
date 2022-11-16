@@ -14,6 +14,7 @@ if (check_auth()) {
 <html lang="ru">
 <body>
    <link rel="stylesheet" href="styles/style.css"> 
+
 </body>
 <head>
     <header class="header">
@@ -27,13 +28,12 @@ if (check_auth()) {
             </ul>
         </nav>
         <?php if ($user) { ?>
-
-<h5>Приветствую, <?=htmlspecialchars($user['username'])?>!</h5>
-
-<form class="mt-5" method="post" action="/admin_panel/do_logout.php">
-  <button type="submit" class="btn btn-primary">Выход</button>
-</form>
-
+           <div class="d-form"> 
+            <div><p>Приветствую, <a href="admin_panel/admin.php"> <?=htmlspecialchars($user['username'])?> </a>!</p> </div>
+            <form class="forms-c" method="post" action="/admin_panel/do_logout.php">
+                <button type="submit" class="c-button">Выход</button>
+            </form>
+        </div>
 <?php }?>
     </div>
     </header>
@@ -44,6 +44,11 @@ if (check_auth()) {
             
         </div>
     </section>
+
+    <?php $stmt = pdo()->prepare("SELECT * FROM `films` JOIN jenre ON films.id_jenre = jenre.id");
+        $stmt->execute();
+        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
 
     <!--Секция с фильмами-->
     <section class="kino">
@@ -62,46 +67,28 @@ if (check_auth()) {
         </div>
         <div class="container">
             <div class="rows">
+            <?php  foreach ($array as $row): ?>
                 <div class="row">
                     <img src="images/kino1.jpg" alt="">
-                    <h5>Name</h5>
+                    <h5><?= $row['name'] ?></h5>
                 </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                    <h5>Name</h5>
-                </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                    <h5>Name</h5>
-                </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                    <h5>Name</h5>
-                </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                    <h5>Name</h5>
-                </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                    <h5>Name</h5>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
-
+    <?php $stmt = pdo()->prepare("SELECT * FROM `News`");
+        $stmt->execute();
+        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
     <section class="news">
         <div class="container">
             <div class="rows">
+            <?php  foreach ($array as $row): ?>
                 <div class="row">
-                    <img src="images/kino1.jpg" alt="">
+                    <p> <?= $row['header'] ?> </p>
+                    <!--<img src="images/kino1.jpg" alt=""> -->
                 </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                </div>
-                <div class="row">
-                    <img src="images/kino1.jpg" alt="">
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
