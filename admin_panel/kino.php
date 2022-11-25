@@ -22,10 +22,12 @@ if (check_auth()) {
         <div class="container">
         <nav class="menu">
             <ul>
-            <a href="kino.php"><li>Фильмы</li> </a>
-               <a href="sessions.php"><li>Сеансы</li></a>
-               <a href="news.php"><li>Новости</li></a>
-               <a href="#"><li>Отчет</li></a>
+            <a href="admin.php"><li style = "color: #c2bfcf">Главная</li> </a>
+            <a href="kino.php"><li style = "color: #c2bfcf">Фильмы</li> </a>
+               <a href="sessions.php"><li style = "color: #c2bfcf">Сеансы</li></a>
+               <a href="news.php"><li style = "color: #c2bfcf">Новости</li></a>
+               <a href="stocks.php"><li style = "color: #c2bfcf">Акции</li></a>
+               <a href="otchets.php"><li style = "color: #c2bfcf">Отчет</li></a>
             </ul>
         </nav>
         <?php if ($user) { ?>
@@ -42,8 +44,10 @@ if (check_auth()) {
     <section class="kino">
         <div class="container" style="display: block;">
         <div style="display: flex;">
-        <h1>Управление фильмами</h1>
+        <h1 style = "color: #c2bfcf">Управление фильмами</h1>
         <a href="createFilms.php"><button type="button" class="c-button"> Добавить фильм </button> </a>
+        <a href="createHalls.php"><button type="button" class="c-button"> Добавить зал </button> </a>
+        <a href="createJenre.php"><button type="button" class="c-button"> Добавить жанр </button> </a>
         </div>
        <?php $stmt = pdo()->prepare("SELECT * FROM `films` JOIN jenre ON films.id_jenre = jenre.id_j");
         $stmt->execute();
@@ -57,8 +61,9 @@ if (check_auth()) {
        <th scope="col">Длительность </th>
        <th scope="col">Жанр </th>
        <th scope="col">Описание </th>
-       <th scope="col">Изменить </th>
+       <th scope="col">Обложка </th>
        <th scope="col">Удалить </th>
+       <th scope="col">Изменить </th>
         </tr>
         </thead>
         <tbody>
@@ -68,9 +73,9 @@ if (check_auth()) {
                     <td><?= $row['duration'] ?></td>
                     <td><?= $row['name_j'] ?></td>
                     <td><?= $row['description'] ?></td>
+                    <td> <img src="<?= $row['photo'] ?>" width=100% /></td>
                     <td><button onclick="del(<?= $row['id_f'] ?>)" type="button" class="c-button"> Х </button></td>
-                        <td>
-                            <a href="update.php?id_f=<?= $row["id_f"] ?>"> <button type="button" class="c-button"> V </button></a> </td>
+                        <td><a href="update.php?id_f=<?= $row["id_f"] ?>"> <button type="button" class="c-button"> V </button></a> </td>
                 </tr>
                 <?php endforeach; ?>
         </tbody>
@@ -79,7 +84,7 @@ if (check_auth()) {
             </div>
     </section>
 
-    <script>
+<script>
    
 function del(id_f)
     {
@@ -95,3 +100,4 @@ function del(id_f)
     }
 
 </script>
+

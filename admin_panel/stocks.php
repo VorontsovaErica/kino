@@ -44,11 +44,11 @@ if (check_auth()) {
     <section class="kino">
         <div class="container" style="display: block;">
         <div style="display: flex;">
-        <h1 style = "color: #c2bfcf">Управление новостями</h1>
-        <a href="createNews.php"><button type="button" class="c-button"> Добавить новость </button> </a>
+        <h1 style = "color: #c2bfcf">Управление акциями</h1>
+        <a href="createStocks.php"><button type="button" class="c-button"> Добавить акцию </button> </a>
         </div>
         
-       <?php $stmt = pdo()->prepare("SELECT * FROM `News`");
+       <?php $stmt = pdo()->prepare("SELECT * FROM `stocks`");
         $stmt->execute();
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
@@ -57,8 +57,7 @@ if (check_auth()) {
         <thead>
         <tr>
         <th scope="col">Заголовок </th>
-       <th scope="col">Дата и время публикации </th>
-       <th scope="col">Текст </th>
+       <th scope="col">Описание </th>
        <th scope="col">Обложка </th>
        <th scope="col">Удалить </th>
        <th scope="col">Изменить </th>
@@ -67,12 +66,11 @@ if (check_auth()) {
         <tbody>
             <?php  foreach ($array as $row): ?>
                 <tr>
-                    <td><?= $row['header'] ?></td>
-                    <td><?= $row['datetime'] ?></td>
+                    <td><?= $row['name'] ?></td>
                     <td><?= $row['text'] ?></td>
-                    <td> <img src="<?= $row['photos'] ?>" width=100% /></td>
-                    <td><button onclick="del(<?= $row['id_n'] ?>)" type="button" class="c-button"> Х </button></td>
-                    <td><a href="updateNews.php?id_n=<?= $row["id_n"] ?>"> <button type="button" class="c-button"> V </button></a> </td>
+                    <td> <img src="<?= $row['images'] ?>" width=100% /></td>
+                    <td><button onclick="del(<?= $row['id_stock'] ?>)" type="button" class="c-button"> Х </button></td>
+                    <td><a href="updateStocks.php?id_stock=<?= $row['id_stock'] ?>"> <button type="button" class="c-button"> V </button></a> </td>
                 </tr>
                 <?php endforeach; ?>
         </tbody>
@@ -83,13 +81,13 @@ if (check_auth()) {
 
     <script>
    
-function del(id_n)
+function del(id_stock)
     {
         $.ajax({
-            url: 'controller/DeleteNews.php',         /* Куда пойдет запрос */
+            url: 'controller/DeleteStock.php',         /* Куда пойдет запрос */
             method: 'get',             /* Метод передачи (post или get) */
             dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
-            data: {id_n: id_n},     /* Параметры передаваемые в запросе. */
+            data: {id_stock: id_stock},     /* Параметры передаваемые в запросе. */
             success: function(){   /* функция которая будет выполнена после успешного запроса.  */
                 location.reload();
             }

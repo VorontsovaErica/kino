@@ -21,11 +21,11 @@ if (check_auth()) {
         <div class="container">
         <nav class="menu">
             <ul>
+            <a href="index.php"><li style = "color: #c2bfcf">Главная</li></a>
                <a href="films.php"><li style = "color: #c2bfcf">Афиша</li> </a>
                <a href="sessionsfilms.php"><li style = "color: #c2bfcf">Сеансы</li></a>
                <a href="news.php"><li style = "color: #c2bfcf">Новости</li></a>
                <a href="stocks.php"><li style = "color: #c2bfcf">Акции</li></a>
-               <a href="kinoteatr.php"><li style = "color: #c2bfcf">Кинотеатр</li></a>
             </ul>
         </nav>
         <?php if ($user) { ?>
@@ -38,60 +38,27 @@ if (check_auth()) {
 <?php }?>
     </div>
     </header>
-    
-    <!--Название кинотеатра-->
-    <section class="main">
-        <div class="container">
-            
-        </div>
-    </section>
-
     <?php $stmt = pdo()->prepare("SELECT * FROM `films` JOIN jenre ON films.id_jenre = jenre.id_j");
         $stmt->execute();
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
+    <!--Секция с рекламой-->
+    <section class="">
+        <div class="container">
+        <div class="rows">
+        <?php  foreach ($array as $row): ?>
+           <div class="row" style="width: 100%; padding: 0;">
+                <div>  <a href="film_read.php?id_f=<?= $row["id_f"] ?>"> <img src="<?= $row['photo'] ?>"/> </a></div>
+            </div> 
+            <?php endforeach; ?>
+        </div>
 
-    <!--Секция с фильмами-->
-    <section class="kino">
-        <div class="container-menu">
-            <nav class="menu">
-                <ul>
-                    <li style = "color: #1a123d">Сейчас в кино</li>
-                </ul>
-            </nav>
-        </div>
-        <div class="container">
-            <div class="rows">
-            <?php  foreach ($array as $row): ?>
-                <div class="row">
-                    <img src="<?= $row['photo'] ?>" alt="">
-                    
-                </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
-    <?php $stmt = pdo()->prepare("SELECT * FROM `News`");
-        $stmt->execute();
-        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        ?>
-    <section class="news">
-        <div class="container">
-            <div class="rows">
-            <?php  foreach ($array as $row): ?>
-                <div class="row" style="background: no-repeat center/100% url(<?= $row['photos'] ?>);">
-                    <p style="color: white;"> <b> <?= $row['header'] ?> </b></p> <hr>
-                    <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: white;"> <?= $row['text'] ?> </p>
-                    <!--<img src="images/kino1.jpg" alt=""> -->
-                </div>
-                <?php endforeach; ?>
-            </div>
         </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" style="margin-top: 3%;">
         <p style="color: #c2bfcf">г.Иркутск</p>
     </footer>
 
-</body>
+        </body>
 </html>

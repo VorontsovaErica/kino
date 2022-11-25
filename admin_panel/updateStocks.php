@@ -13,37 +13,35 @@ require_once __DIR__.'/boot.php';
         <div class="container" style="display: block; text-align: center; margin-top: 2%">
         <?php
 // если запрос GET
-if($_SERVER["REQUEST_METHOD"] === "GET" AND isset($_GET["id_n"]))
+if($_SERVER["REQUEST_METHOD"] === "GET" AND isset($_GET["id_stock"]))
 {
-    $news = $_GET["id_n"];
-    $sql = "SELECT * FROM News WHERE id_n = :news";
+    $news = $_GET["id_stock"];
+    $sql = "SELECT * FROM stocks WHERE id_stock = :news";
     $new = pdo()->prepare($sql);
     $new->bindValue(":news", $news);
     // выполняем выражение и получаем данные по id
     $new->execute();
     if($new->rowCount() > 0){
         foreach ($new as $row) {
-            $header = $row['header'];
-            $datetime = $row['datetime'];
+            $name = $row['name'];
             $text = $row['text'];
-            $photos = $row['photos'];
+            $images = $row['images'];
         }?>
 </div>
-<h3 style = "color: #c2bfcf;padding-bottom: 20px;font-size:28px">Изменение данных о новости</h3>
+<h3 style = "color: #c2bfcf;padding-bottom: 20px;font-size:28px">Изменение данных об акции</h3>
 <hr>
   <div class="rows">
   <form method='POST' class="forms" style="margin-left: 0; text-align: left; padding: 2% 2%;color: #c2bfcf;font-size:18px">
 
      <div class="form-control" >
 
-                  <input type='hidden' name='id_n' value='<?= $row['id_n']?>' />
-                  <p>Название:<input class="form-control" type='text' name='header' value='<?= $row['header']?>' /></p>
-                  <input type="hidden" name='datetime' value='<?= $row['datetime']?>' /></p>
+                  <input type='hidden' name='id_stock' value='<?= $row['id_stock']?>' />
+                  <p>Название:<input class="form-control" type='text' name='name' value='<?= $row['name']?>' /></p>
 
                   <p>Описание:
                   <textarea class="form-control" name='text' rows="10"> <?= $row['text']?> </textarea></p>
 
-                  <p>Изображение:<input class="form-control" type='text' name='photos' value='<?= $row['photos']?>' /><p>
+                  <p>Изображение:<input class="form-control" type='text' name='images' value='<?= $row['images']?>' /><p>
 
                   <input class="btn btn-primary" type='submit' value='Сохранить' />
       </div>
@@ -52,20 +50,19 @@ if($_SERVER["REQUEST_METHOD"] === "GET" AND isset($_GET["id_n"]))
 
    <?php }
     else{
-        echo "Пользователь не найден";
+        echo "Акция не найдена";
     }
 }
-elseif (isset($_POST["id_n"]) OR isset($_POST["header"]) OR isset($_POST["datetime"]) OR isset($_POST["text"]) OR isset($_POST["photos"])) {
+elseif (isset($_POST["id_stock"]) OR isset($_POST["name"]) OR isset($_POST["text"]) OR isset($_POST["images"])) {
 
-    $sql = "UPDATE News SET header = :header, datetime = :datetime, text = :text, photos = :photos WHERE id_n = :news";
+    $sql = "UPDATE stocks SET name = :name, text = :text, images = :images WHERE id_stock = :news";
     $new = pdo()->prepare($sql);
-    $new->bindValue(":news", $_POST["id_n"]);
-    $new->bindValue(":header", $_POST["header"]);
-    $new->bindValue(":datetime", $_POST["datetime"]);
+    $new->bindValue(":news", $_POST["id_stock"]);
+    $new->bindValue(":name", $_POST["name"]);
     $new->bindValue(":text", $_POST["text"]);
-    $new->bindValue(":photos", $_POST["photos"]);
+    $new->bindValue(":images", $_POST["images"]);
     $new->execute();
-    header("Location: news.php");
+    header("Location: stocks.php");
 }
 else{
     echo "Некорректные данные";

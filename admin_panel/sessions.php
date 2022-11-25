@@ -22,10 +22,12 @@ if (check_auth()) {
         <div class="container">
         <nav class="menu">
             <ul>
-            <a href="kino.php"><li>Фильмы</li> </a>
-               <a href="sessions.php"><li>Сеансы</li></a>
-               <a href="news.php"><li>Новости</li></a>
-               <a href="#"><li>Отчет</li></a>
+            <a href="admin.php"><li style = "color: #c2bfcf">Главная</li> </a>
+            <a href="kino.php"><li style = "color: #c2bfcf">Фильмы</li> </a>
+               <a href="sessions.php"><li style = "color: #c2bfcf">Сеансы</li></a>
+               <a href="news.php"><li style = "color: #c2bfcf">Новости</li></a>
+               <a href="stocks.php"><li style = "color: #c2bfcf">Акции</li></a>
+               <a href="otchets.php"><li style = "color: #c2bfcf">Отчет</li></a>
             </ul>
         </nav>
         <?php if ($user) { ?>
@@ -41,7 +43,10 @@ if (check_auth()) {
 
     <section class="kino">
         <div class="container" style="display: block;">
-        <h1>Управление сеансами</h1>
+        <div style="display: flex;">
+        <h1 style = "color: #c2bfcf">Управление сеансами</h1>
+        <a href="createSessions.php"><button type="button" class="c-button"> Добавить сеанс </button> </a>
+        </div>
         
        <?php $stmt = pdo()->prepare("SELECT * FROM `sessions` JOIN films ON sessions.id_films = films.id_f JOIN halls ON sessions.id_halls = halls.id_h");
         $stmt->execute();
